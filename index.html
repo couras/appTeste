@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appSmartContas">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="CSS/default.css">
+</head>
+
+<body ng-controller="indexCtrl">
+    <header class="container">
+        <div class="row">
+            <h2 ng-bind="title"></h2>
+        </div>
+
+    </header>
+
+    <main class="container">
+        <div class="row">
+            <input type="text" placeholder="Busca" ng-model="pesquisa.nome">
+        </div>
+        <div class="row">
+            <table class="striped">
+                <thead>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Nota 1</th>
+                    <th>Nota 2</th>
+                    <th>Nota 3</th>
+                    <th>Média</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="aluno in alunos | filter:pesquisa">
+                        <td ng-bind="aluno.nome"></td>
+                        <td ng-bind="aluno.email"></td>
+                        <td ng-bind="aluno.nota"></td>
+                        <td ng-bind="aluno.nota2"></td>
+                        <td ng-bind="aluno.nota3"></td>
+                        <td ng-bind="aluno.media"></td>
+                        <td>
+                            <button ng-click="editar(aluno)" class="btn blue">Editar</button>
+                            <button ng-click="delete(aluno)" class="btn red">Deletar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <a ng-click="adicionar()" class="waves-effect waves-light btn">
+                Adicionar
+            </a>
+        </div>
+    </main>
+
+
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4 ng-if="!isEdit">Adicionar Aluno</h4>
+            <h4 ng-if="isEdit">Editar Aluno</h4>
+            <p>Informe os dados do aluno</p>
+
+            <div class="row">
+                <div class="input-field col m12 s6">
+                    <input ng-model="Aluno.nome" type="text" class="validate" id="nome" placeholder="Nome">
+
+                </div>
+                <div class="input-field col m12 s6">
+                    <input ng-model="Aluno.email" type="text" class="validate" id="email" placeholder="E-mail">
+
+                </div>
+                <div class="input-field col m4 s12">
+                    <input ng-model="Aluno.nota" type="text" class="validate" id="nota1" placeholder="Nota 1">
+
+                </div>
+                <div class="input-field col m4 s12">
+                    <input ng-model="Aluno.nota2" type="text" class="validate" id="nota2" placeholder="Nota 2">
+
+                </div>
+                <div class="input-field col m4 s12">
+                    <input ng-model="Aluno.nota3" type="text" class="validate" id="nota3" placeholder="Nota 3">
+
+                </div>
+                <div class="input-field col m12 s12">
+                    <input ng-model="Aluno.media" type="text" class="ready-only" id="media" placeholder="Média">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
+            <a ng-if="!isEdit" class="waves-effect btn blue" ng-click="addConta(Aluno)">Confirmar</a>
+            <a ng-if="isEdit" class="waves-effect btn blue" ng-click="salvar(Aluno)">Salvar</a>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+        <script src="JS/Materialize/init.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+
+    <script src="JS/APP/app.js"></script>
+    <script src="JS/Controllers/indexCtrl.js"></script>
+
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>
